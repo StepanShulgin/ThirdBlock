@@ -17,7 +17,9 @@ namespace ThirdBlock
             int w = pictureBox1.ClientSize.Width;
             int h = pictureBox1.ClientSize.Height;
             DataBank.newTree.AddNumLevel(9, w, h);
-           
+            label1.Text = "N/A";
+            label2.Text = "N/A";
+
 
         }
 

@@ -22,7 +22,8 @@ namespace ThirdBlock
         private void Fractals_Load(object sender, EventArgs e)
         {
             label1.Text = DataBank.Level.ToString();
-           
+            label3.Text = "N/A";
+            label4.Text = "N/A";
         }
 
         private void PaintFract(object sender, PaintEventArgs e)
