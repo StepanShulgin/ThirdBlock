@@ -214,8 +214,8 @@ namespace ThirdBlock
 				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(0.52));
 				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(0.52));
 
-				xT = _width / 12;
-				yT = 3 * _height / (2 * numLevel);
+				xT = 3*_width /(2 * numLevel);
+				yT = _height / 12;
 
 				tree = new Point(xT, yT);
 				fract = new Point(xF, yF);
@@ -236,8 +236,8 @@ namespace ThirdBlock
 				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(1.57));
 				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(1.57));
 
-				xT = 3 * _width / 12;
-				yT = 3 * _height / (2 * numLevel);
+				xT = 3 * _width / (2 * numLevel);
+				yT = 3 * _height / 12;
 
 				tree = new Point(xT, yT);
 				fract = new Point(xF, yF);
@@ -258,8 +258,8 @@ namespace ThirdBlock
 				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(2.62));
 				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(2.62));
 
-				xT = 5 * _width / 12;
-				yT = 3 * _height / (2 * numLevel);
+				xT = 3 * _width / (2 * numLevel);
+				yT = 5 * _height / 12;
 
 				tree = new Point(xT, yT);
 				fract = new Point(xF, yF);
@@ -280,8 +280,8 @@ namespace ThirdBlock
 				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(3.67));
 				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(3.67));
 
-				xT = 7 * _width / 12;
-				yT = 3 * _height / (2 * numLevel);
+				xT = 3 * _width / (2 * numLevel);
+				yT = 7 * _height / 12;
 
 				tree = new Point(xT, yT);
 				fract = new Point(xF, yF);
@@ -303,8 +303,8 @@ namespace ThirdBlock
 				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(4.71));
 				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(4.71));
 
-				xT = 9 * _width / 12;
-				yT = 3 * _height / (2 * numLevel);
+				xT = 3 * _width / (2 * numLevel);
+				yT = 9 * _height / 12;
 
 				tree = new Point(xT, yT);
 				fract = new Point(xF, yF);
@@ -325,8 +325,8 @@ namespace ThirdBlock
 				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(5.76));
 				yF = (int)( _parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(5.76));
 
-				xT = 11 * _width / 12;
-				yT = 3 * _height / (2 * numLevel);
+				xT = 3 * _width / (2 * numLevel);
+				yT = 11 * _height / 12;
 
 				tree =new  Point(xT, yT);
 				fract =new Point(xF, yF);
@@ -359,15 +359,15 @@ namespace ThirdBlock
 				int tempX = (int)(_parent.coordF.X + Math.Sqrt(3) / 6 * tempSide * Math.Cos(_parent.Angle));
 				int tempY = (int)(_parent.coordF.Y + Math.Sqrt(3) / 6 * tempSide * Math.Sin(_parent.Angle));
 
-				int parentWidth = _width / (numElOfLvl[_parent.Level]);
-				int step = (parentWidth - 3 * dEllipse) / 6;
+				int parentHeight = _height / (numElOfLvl[_parent.Level]);
+				int step = (parentHeight - 3 * dEllipse) / 6;
 
 				//First Child
 				xF = (int)(tempX + Math.Sqrt(3) * tempSide / 6 * Math.Cos(-0.52 + _parent.Angle));
 				yF = (int)(tempY + Math.Sqrt(3) * tempSide / 6 * Math.Sin(-0.52 + _parent.Angle));
 
-				xT = _parent.coordT.X - 2 * step - dEllipse;
-				yT = _parent.coordT.Y + 2*_height / (2 * numLevel);
+				xT = _parent.coordT.X + 2*_width / (2 * numLevel);
+				yT = _parent.coordT.Y - 2 * step - dEllipse;
 
 				tree =new Point(xT, yT);
 				fract =new Point(xF, yF);
@@ -388,8 +388,8 @@ namespace ThirdBlock
 				xF = (int)(tempX + Math.Sqrt(3) * tempSide / 6 * Math.Cos(_parent.Angle));
 				yF = (int)(tempY + Math.Sqrt(3) * tempSide / 6 * Math.Sin(_parent.Angle));
 
-				xT = _parent.coordT.X;
-				yT = _parent.coordT.Y + 2*_height / (2 * numLevel);
+				xT = _parent.coordT.X+ 2*_width / (2 * numLevel);
+				yT = _parent.coordT.Y ;
 
 				tree =new  Point(xT, yT);
 				fract =new Point(xF, yF);
@@ -410,8 +410,8 @@ namespace ThirdBlock
 				xF = (int)(tempX + Math.Sqrt(3) * tempSide / 6 * Math.Cos(0.52 + _parent.Angle));
 				yF = (int)(tempY + Math.Sqrt(3) * tempSide / 6 * Math.Sin(0.52 + _parent.Angle));
 
-				xT = _parent.coordT.X + 2 * step + dEllipse;
-				yT = _parent.coordT.Y + 2*_height / (2 * numLevel);
+				xT = _parent.coordT.X + 2*_width / (2 * numLevel);
+				yT = _parent.coordT.Y + 2 * step + dEllipse;
 
 				tree =new Point(xT, yT);
 				fract =new Point(xF, yF);
@@ -490,8 +490,8 @@ namespace ThirdBlock
 			double _angle;
 
 			int xT, yT;
-			xT = _width/ 2;
-			yT = _height / (2 * numLevel);
+			xT = _width/ (2 * numLevel);
+			yT = _height / 2;
 			tree = new Point(xT, yT);
 			fract = new Point(0, 0);
 			_Level = 0;
@@ -531,7 +531,7 @@ namespace ThirdBlock
 					{
 						e.Graphics.DrawEllipse(pen, lvl1[i].coordT.X - 5, lvl1[i].coordT.Y - 5, 10, 10);
 						e.Graphics.FillEllipse(brush, lvl1[i].coordT.X - 5, lvl1[i].coordT.Y - 5, 10, 10);
-						e.Graphics.DrawLine(Pens.Black, lvl1[i].coordT.X, lvl1[i].coordT.Y, lvl1[i].Parent.coordT.X, lvl1[i].Parent.coordT.Y);
+						e.Graphics.DrawLine(Pens.Black, lvl1[i].coordT.X-5, lvl1[i].coordT.Y, lvl1[i].Parent.coordT.X+5, lvl1[i].Parent.coordT.Y);
 					}
 					break;
 				case 2:
@@ -541,7 +541,7 @@ namespace ThirdBlock
 					{
 						e.Graphics.DrawEllipse(pen, lvl2[i].coordT.X - 5, lvl2[i].coordT.Y - 5, 10, 10);
 						e.Graphics.FillEllipse(brush, lvl2[i].coordT.X - 5, lvl2[i].coordT.Y - 5, 10, 10);
-						e.Graphics.DrawLine(Pens.Black, lvl2[i].coordT.X, lvl2[i].coordT.Y, lvl2[i].Parent.coordT.X, lvl2[i].Parent.coordT.Y);
+						e.Graphics.DrawLine(Pens.Black, lvl2[i].coordT.X-5, lvl2[i].coordT.Y, lvl2[i].Parent.coordT.X+5, lvl2[i].Parent.coordT.Y);
 					}
 					break;
 				case 3:
@@ -551,7 +551,7 @@ namespace ThirdBlock
 					{
 						e.Graphics.DrawEllipse(pen, lvl3[i].coordT.X - 5, lvl3[i].coordT.Y - 5, 10, 10);
 						e.Graphics.FillEllipse(brush, lvl3[i].coordT.X - 5, lvl3[i].coordT.Y - 5, 10, 10);
-						e.Graphics.DrawLine(Pens.Black, lvl3[i].coordT.X, lvl3[i].coordT.Y, lvl3[i].Parent.coordT.X, lvl3[i].Parent.coordT.Y);
+						e.Graphics.DrawLine(Pens.Black, lvl3[i].coordT.X-5, lvl3[i].coordT.Y, lvl3[i].Parent.coordT.X+5, lvl3[i].Parent.coordT.Y);
 					}
 					break;
 				case 4:
@@ -561,7 +561,7 @@ namespace ThirdBlock
 					{
 						e.Graphics.DrawEllipse(pen, lvl4[i].coordT.X - 5, lvl4[i].coordT.Y - 5, 10, 10);
 						e.Graphics.FillEllipse(brush, lvl4[i].coordT.X - 5, lvl4[i].coordT.Y - 5, 10, 10);
-						e.Graphics.DrawLine(Pens.Black, lvl4[i].coordT.X, lvl4[i].coordT.Y, lvl4[i].Parent.coordT.X, lvl4[i].Parent.coordT.Y);
+						e.Graphics.DrawLine(Pens.Black, lvl4[i].coordT.X-5, lvl4[i].coordT.Y, lvl4[i].Parent.coordT.X+5, lvl4[i].Parent.coordT.Y);
 					}
 					break;
 				case 5:
@@ -571,7 +571,7 @@ namespace ThirdBlock
 					{
 						e.Graphics.DrawEllipse(pen, lvl5[i].coordT.X - 5, lvl5[i].coordT.Y - 5, 10, 10);
 						e.Graphics.FillEllipse(brush, lvl5[i].coordT.X - 5, lvl5[i].coordT.Y - 5, 10, 10);
-						e.Graphics.DrawLine(Pens.Black, lvl5[i].coordT.X, lvl5[i].coordT.Y, lvl5[i].Parent.coordT.X, lvl5[i].Parent.coordT.Y);
+						e.Graphics.DrawLine(Pens.Black, lvl5[i].coordT.X-5, lvl5[i].coordT.Y, lvl5[i].Parent.coordT.X+5, lvl5[i].Parent.coordT.Y);
 					}
 					break;
 				case 6:
@@ -581,7 +581,7 @@ namespace ThirdBlock
 					{
 						e.Graphics.DrawEllipse(pen, lvl6[i].coordT.X - 5, lvl6[i].coordT.Y - 5, 10, 10);
 						e.Graphics.FillEllipse(brush, lvl6[i].coordT.X - 5, lvl6[i].coordT.Y - 5, 10, 10);
-						e.Graphics.DrawLine(Pens.Black, lvl6[i].coordT.X, lvl6[i].coordT.Y, lvl6[i].Parent.coordT.X, lvl6[i].Parent.coordT.Y);
+						e.Graphics.DrawLine(Pens.Black, lvl6[i].coordT.X-5, lvl6[i].coordT.Y, lvl6[i].Parent.coordT.X+5, lvl6[i].Parent.coordT.Y);
 					}
 					break;
 				case 7:
@@ -591,7 +591,7 @@ namespace ThirdBlock
 					{
 						e.Graphics.DrawEllipse(pen, lvl7[i].coordT.X - 5, lvl7[i].coordT.Y - 5, 10, 10);
 						e.Graphics.FillEllipse(brush, lvl7[i].coordT.X - 5, lvl7[i].coordT.Y - 5, 10, 10);
-						e.Graphics.DrawLine(Pens.Black, lvl7[i].coordT.X, lvl7[i].coordT.Y, lvl7[i].Parent.coordT.X, lvl7[i].Parent.coordT.Y);
+						e.Graphics.DrawLine(Pens.Black, lvl7[i].coordT.X-5, lvl7[i].coordT.Y, lvl7[i].Parent.coordT.X+5, lvl7[i].Parent.coordT.Y);
 					}
 					break;
 				case 8:
@@ -601,7 +601,7 @@ namespace ThirdBlock
 					{
 						e.Graphics.DrawEllipse(pen, lvl8[i].coordT.X - 5, lvl8[i].coordT.Y - 5, 10, 10);
 						e.Graphics.FillEllipse(brush, lvl8[i].coordT.X - 5, lvl8[i].coordT.Y - 5, 10, 10);
-						e.Graphics.DrawLine(Pens.Black, lvl8[i].coordT.X, lvl8[i].coordT.Y, lvl8[i].Parent.coordT.X, lvl8[i].Parent.coordT.Y);
+						e.Graphics.DrawLine(Pens.Black, lvl8[i].coordT.X-5, lvl8[i].coordT.Y, lvl8[i].Parent.coordT.X+5, lvl8[i].Parent.coordT.Y);
 					}
 					break;
 				case 9:
@@ -611,7 +611,7 @@ namespace ThirdBlock
 					{
 						e.Graphics.DrawEllipse(pen, lvl9[i].coordT.X - 5, lvl9[i].coordT.Y - 5, 10, 10);
 						e.Graphics.FillEllipse(brush, lvl9[i].coordT.X - 5, lvl9[i].coordT.Y - 5, 10, 10);
-						e.Graphics.DrawLine(Pens.Black, lvl9[i].coordT.X, lvl9[i].coordT.Y, lvl9[i].Parent.coordT.X, lvl9[i].Parent.coordT.Y);
+						e.Graphics.DrawLine(Pens.Black, lvl9[i].coordT.X-5, lvl9[i].coordT.Y, lvl9[i].Parent.coordT.X+5, lvl9[i].Parent.coordT.Y);
 					}
 					break;
 			}
