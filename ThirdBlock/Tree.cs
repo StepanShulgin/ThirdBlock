@@ -86,7 +86,7 @@ namespace ThirdBlock
 
 		public Node(Point tree, Point fract, int level, double Angle) { 
 			this._coordT = tree;
-			this._coordT = tree;
+			this._coordF = fract;
 			this._Level = level;
 			this._Angle = Angle;
 		}
@@ -97,7 +97,7 @@ namespace ThirdBlock
     {
 
   
-		private Node? root;
+		public Node? root;
 
         const int numLevel  = 10;
 		const int dEllipse = 10;
@@ -211,8 +211,8 @@ namespace ThirdBlock
 			if (_parent.Level+1 == 1)
 			{
 				//First Child
-				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(0.52));
-				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(0.52));
+				xF = (int)Math.Round(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(0.52));
+				yF = (int)Math.Round(_parent.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(0.52));
 
 				xT = 3*_width /(2 * numLevel);
 				yT = _height / 12;
@@ -233,8 +233,8 @@ namespace ThirdBlock
 				numElOfLvl[_parent.Level + 1]++;//NEW!!
 
 				//Second Child
-				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(1.57));
-				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(1.57));
+				xF = (int)Math.Round(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(1.57));
+				yF = (int)Math.Round(_parent.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(1.57));
 
 				xT = 3 * _width / (2 * numLevel);
 				yT = 3 * _height / 12;
@@ -255,8 +255,8 @@ namespace ThirdBlock
 				numElOfLvl[_parent.Level + 1]++;//NEW!!
 
 				//Third Child
-				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(2.62));
-				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(2.62));
+				xF = (int)Math.Round(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(2.62));
+				yF = (int)Math.Round(_parent.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(2.62));
 
 				xT = 3 * _width / (2 * numLevel);
 				yT = 5 * _height / 12;
@@ -277,8 +277,8 @@ namespace ThirdBlock
 				numElOfLvl[_parent.Level + 1]++;//NEW!!
 
 				//Fourth Child
-				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(3.67));
-				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(3.67));
+				xF = (int)Math.Round(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(3.67));
+				yF = (int)Math.Round(_parent.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(3.67));
 
 				xT = 3 * _width / (2 * numLevel);
 				yT = 7 * _height / 12;
@@ -300,8 +300,8 @@ namespace ThirdBlock
 				
 
 				//Fifth Child
-				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(4.71));
-				yF = (int)(_parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(4.71));
+				xF = (int)Math.Round(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(4.71));
+				yF = (int)Math.Round(_parent.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(4.71));
 
 				xT = 3 * _width / (2 * numLevel);
 				yT = 9 * _height / 12;
@@ -322,8 +322,8 @@ namespace ThirdBlock
 				numElOfLvl[_parent.Level + 1]++;//NEW!!
 
 				//Sixth CHild
-				xF = (int)(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(5.76));
-				yF = (int)( _parent.coordF.Y + Math.Sqrt(3) * side / 6 * Math.Sin(5.76));
+				xF = (int)Math.Round(_parent.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(5.76));
+				yF = (int)Math.Round( _parent.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(5.76));
 
 				xT = 3 * _width / (2 * numLevel);
 				yT = 11 * _height / 12;
@@ -355,16 +355,16 @@ namespace ThirdBlock
 
 			if (_parent.Level+1 > 1)
 			{
-				int tempSide = (int)(side / Math.Pow(3, _parent.Level - 1));
-				int tempX = (int)(_parent.coordF.X + Math.Sqrt(3) / 6 * tempSide * Math.Cos(_parent.Angle));
-				int tempY = (int)(_parent.coordF.Y + Math.Sqrt(3) / 6 * tempSide * Math.Sin(_parent.Angle));
+				int tempSide = (int)Math.Round(side / Math.Pow(3, _parent.Level));
+				int tempX = (int)Math.Round(_parent.coordF.X + Math.Sqrt(3) / 6 * tempSide * Math.Cos(_parent.Angle));
+				int tempY = (int)Math.Round(_parent.coordF.Y - Math.Sqrt(3) / 6 * tempSide * Math.Sin(_parent.Angle));
 
 				int parentHeight = _height / (numElOfLvl[_parent.Level]);
 				int step = (parentHeight - 3 * dEllipse) / 6;
 
 				//First Child
-				xF = (int)(tempX + Math.Sqrt(3) * tempSide / 6 * Math.Cos(-0.52 + _parent.Angle));
-				yF = (int)(tempY + Math.Sqrt(3) * tempSide / 6 * Math.Sin(-0.52 + _parent.Angle));
+				xF = (int)Math.Round(tempX + Math.Sqrt(3) * tempSide / 6 * Math.Cos(-1.05 + _parent.Angle));
+				yF = (int)Math.Round(tempY - Math.Sqrt(3) * tempSide / 6 * Math.Sin(-1.05 + _parent.Angle));
 
 				xT = _parent.coordT.X + 2*_width / (2 * numLevel);
 				yT = _parent.coordT.Y - 2 * step - dEllipse;
@@ -372,7 +372,7 @@ namespace ThirdBlock
 				tree =new Point(xT, yT);
 				fract =new Point(xF, yF);
 				_Level = _parent.Level + 1;
-				_angle = -0.52 + _parent.Angle; // 30
+				_angle = -1.05 + _parent.Angle; // 30
 				Node newFirstNode = new Node(tree, fract, _Level, _angle);
 				newFirstNode.First = null;
 				newFirstNode.Second = null;
@@ -385,8 +385,8 @@ namespace ThirdBlock
 				numElOfLvl[_parent.Level+1]++;//NEW!!
 
 				//Second Child
-				xF = (int)(tempX + Math.Sqrt(3) * tempSide / 6 * Math.Cos(_parent.Angle));
-				yF = (int)(tempY + Math.Sqrt(3) * tempSide / 6 * Math.Sin(_parent.Angle));
+				xF = (int)Math.Round(tempX + Math.Sqrt(3) * tempSide / 6 * Math.Cos(_parent.Angle));
+				yF = (int)Math.Round(tempY - Math.Sqrt(3) * tempSide / 6 * Math.Sin(_parent.Angle));
 
 				xT = _parent.coordT.X+ 2*_width / (2 * numLevel);
 				yT = _parent.coordT.Y ;
@@ -407,8 +407,8 @@ namespace ThirdBlock
 				numElOfLvl[_parent.Level+1]++;//NEW!!
 
 				//Third Child
-				xF = (int)(tempX + Math.Sqrt(3) * tempSide / 6 * Math.Cos(0.52 + _parent.Angle));
-				yF = (int)(tempY + Math.Sqrt(3) * tempSide / 6 * Math.Sin(0.52 + _parent.Angle));
+				xF = (int)Math.Round(tempX + Math.Sqrt(3) * tempSide / 6 * Math.Cos(1.05 + _parent.Angle));
+				yF = (int)Math.Round(tempY - Math.Sqrt(3) * tempSide / 6 * Math.Sin(1.05 + _parent.Angle));
 
 				xT = _parent.coordT.X + 2*_width / (2 * numLevel);
 				yT = _parent.coordT.Y + 2 * step + dEllipse;
@@ -416,7 +416,7 @@ namespace ThirdBlock
 				tree =new Point(xT, yT);
 				fract =new Point(xF, yF);
 				_Level = _parent.Level + 1;
-				_angle = 0.52 + _parent.Angle; // 30
+				_angle = 1.05 + _parent.Angle; // 30
 				Node newThirdNode = new Node(tree, fract, _Level, _angle);
 				newThirdNode.First = null;
 				newThirdNode.Second = null;
@@ -619,12 +619,238 @@ namespace ThirdBlock
 
 		public void PaintTree(PaintEventArgs e)
 		{
-			for(int i =0; i<10;i++) PaintTreeLayer(i,e);
-			
+			for(int i =0; i<10;i++) PaintTreeLayer(i,e);			
 			
 		}
 
+		public void PrintFractal(int numOfLayers, PaintEventArgs e)
+		{
+			if (numOfLayers >= 0)
+			{
+				PrintLevelFractal(0, e);
+				if (numOfLayers >= 1)
+				{
+					PrintLevelFractal(1, e);
+					if (numOfLayers >= 2)
+					{
+						PrintLevelFractal(2, e);
+						if (numOfLayers >= 3)
+						{
+							PrintLevelFractal(3, e);
+							if (numOfLayers >= 4)
+							{
+								PrintLevelFractal(4, e);
+								if (numOfLayers >= 5)
+								{
+									PrintLevelFractal(5, e);
+									if (numOfLayers >= 6)
+									{
+										PrintLevelFractal(6, e);
+										if (numOfLayers >= 7)
+										{
+											PrintLevelFractal(7, e);
+											if (numOfLayers >= 8)
+											{
+												PrintLevelFractal(8, e);
+												if (numOfLayers >= 9)
+												{
+													PrintLevelFractal(9, e);
 
+												}
+
+											}
+
+										}
+									}
+
+								}
+
+							}
+
+						}
+
+					}
+
+				}
+			}
+			
+		}
+
+		private void PrintLevelFractal(int numOfLayer, PaintEventArgs e)
+		{
+			if (numOfLayer == 0) 
+			{
+				/*
+				e.Graphics.DrawLine(Pens.Red, root.Second.coordF.X,(int)Math.Round(root.Second.coordF.Y -Math.Sqrt(3)*(side / 6)), (int)Math.Round(root.Fourth.coordF.X + Math.Sqrt(3)*(side / 6) * Math.Cos(root.Fourth.Angle)), (int)Math.Round(root.Fourth.coordF.Y + Math.Sqrt(3)*(side / 6) * Math.Sin(root.Fourth.Angle)));
+				e.Graphics.DrawLine(Pens.Red, root.Second.coordF.X, (int)Math.Round(root.Second.coordF.Y - Math.Sqrt(3) * (side / 6)), (int)Math.Round(root.Sixth.coordF.X + Math.Sqrt(3)*(side / 6) * Math.Cos(root.Sixth.Angle)), (int)Math.Round(root.Sixth.coordF.Y + Math.Sqrt(3)*(side / 6) * Math.Sin(root.Sixth.Angle)));
+				e.Graphics.DrawLine(Pens.Red, (int)Math.Round(root.Fourth.coordF.X + Math.Sqrt(3)*(side / 6) * Math.Cos(root.Fourth.Angle)), (int)Math.Round(root.Fourth.coordF.Y + Math.Sqrt(3)*(side / 6) * Math.Sin(root.Fourth.Angle)), (int)Math.Round(root.Sixth.coordF.X + Math.Sqrt(3)*(side / 6) * Math.Cos(root.Sixth.Angle)), (int)Math.Round(root.Sixth.coordF.Y + Math.Sqrt(3)*(side / 6) * Math.Sin(root.Sixth.Angle)));
+				e.Graphics.DrawLine(Pens.Red, 0, 0, 0, 250);
+				*/
+				pen.Width = 2;
+				pen.Color = Color.Red;
+				e.Graphics.DrawLine(pen,(int)Math.Round(root.Second.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(root.Second.Angle)), (int)Math.Round(root.Second.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(root.Second.Angle)), (int)Math.Round(root.Fourth.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(root.Fourth.Angle)),(int)Math.Round(root.Fourth.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(root.Fourth.Angle)));
+				e.Graphics.DrawLine(pen, (int)Math.Round(root.Second.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(root.Second.Angle)), (int)Math.Round(root.Second.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(root.Second.Angle)), (int)Math.Round(root.Sixth.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(root.Sixth.Angle)),(int)Math.Round(root.Sixth.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(root.Sixth.Angle)));
+				e.Graphics.DrawLine(pen, (int)Math.Round(root.Fourth.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(root.Fourth.Angle)),(int)Math.Round(root.Fourth.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(root.Fourth.Angle)), (int)Math.Round(root.Sixth.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(root.Sixth.Angle)), (int)Math.Round(root.Sixth.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(root.Sixth.Angle)));
+				
+			}
+			if (numOfLayer == 1)
+			{
+				for (int i = 0; i < lvl1.Length; i++)
+				{
+					int tempSide = (int)Math.Round(side / Math.Pow(3, numOfLayer));
+					int tempX= (int)Math.Round(lvl1[i].coordF.X+tempSide*Math.Sqrt(3)/6 * Math.Cos((lvl1[i].Angle)));
+					int tempY= (int)Math.Round(lvl1[i].coordF.Y - tempSide * Math.Sqrt(3) / 6 * Math.Sin((lvl1[i].Angle)));
+					pen.Color = Color.White;
+					pen.Width = 10;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl1[i].Angle+2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl1[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl1[i].Angle + 4.19)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl1[i].Angle) + 4.19)));
+					pen.Color = Color.Purple;
+					pen.Width = 2;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl1[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl1[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl1[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl1[i].Angle))));
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl1[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl1[i].Angle))), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl1[i].Angle + 4.19)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl1[i].Angle) + 4.19)));
+					
+				}
+			}
+			if (numOfLayer == 2)
+			{
+				for (int i = 0; i < lvl2.Length; i++)
+				{
+					int tempSide = (int)Math.Round(side / Math.Pow(3, 2));
+					int tempX = (int)Math.Round(lvl2[i].coordF.X +tempSide * Math.Sqrt(3) / 6 * Math.Cos((lvl2[i].Angle)));
+					int tempY = (int)Math.Round(lvl2[i].coordF.Y - tempSide * Math.Sqrt(3) / 6 * Math.Sin((lvl2[i].Angle)));
+					pen.Color = Color.White;
+					pen.Width = 10;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl2[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl2[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl2[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl2[i].Angle) + 4.29)));
+					pen.Width = 2;
+					pen.Color = Color.DeepPink;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl2[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl2[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl2[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl2[i].Angle))));
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl2[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl2[i].Angle))), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl2[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl2[i].Angle) + 4.29)));
+					pen.Width = 1;
+				}
+			}
+			if (numOfLayer == 3)
+			{
+				for (int i = 0; i < lvl3.Length; i++)
+				{
+					int tempSide = (int)Math.Round(side / Math.Pow(3, 3));
+					int tempX = (int)Math.Round(lvl3[i].coordF.X + tempSide * Math.Sqrt(3) / 6 * Math.Cos((lvl3[i].Angle)));
+					int tempY = (int)Math.Round(lvl3[i].coordF.Y - tempSide * Math.Sqrt(3) / 6 * Math.Sin((lvl3[i].Angle)));
+					pen.Color = Color.White;
+					pen.Width = 10;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl3[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl3[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl3[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl3[i].Angle) + 4.29)));
+					pen.Color = Color.DarkBlue;
+					pen.Width = 2;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl3[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl3[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl3[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl3[i].Angle))));
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl3[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl3[i].Angle))), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl3[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl3[i].Angle) + 4.29)));
+				}
+			}
+			if (numOfLayer == 4)
+			{
+				for (int i = 0; i < lvl4.Length; i++)
+				{
+					int tempSide = (int)Math.Round(side / Math.Pow(3, 4));
+					int tempX = (int)Math.Round(lvl4[i].coordF.X + tempSide * Math.Sqrt(3) / 6 * Math.Cos((lvl4[i].Angle)));
+					int tempY = (int)Math.Round(lvl4[i].coordF.Y - tempSide * Math.Sqrt(3) / 6 * Math.Sin((lvl4[i].Angle)));
+					pen.Color = Color.White;
+					pen.Width = 10;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl4[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl4[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl4[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl4[i].Angle) + 4.29)));
+					pen.Width = 2;
+					pen.Color = Color.DarkGreen;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl4[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl4[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl4[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl4[i].Angle))));
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl4[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl4[i].Angle))), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl4[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl4[i].Angle) + 4.29)));
+					pen.Width = 1;
+				}
+			}
+			if (numOfLayer == 5)
+			{
+				for (int i = 0; i < lvl5.Length; i++)
+				{
+					int tempSide = (int)Math.Round(side / Math.Pow(3, 5));
+					int tempX = (int)Math.Round(lvl5[i].coordF.X + tempSide * Math.Sqrt(3) / 6 * Math.Cos((lvl5[i].Angle)));
+					int tempY = (int)Math.Round(lvl5[i].coordF.Y - tempSide * Math.Sqrt(3) / 6 * Math.Sin((lvl5[i].Angle)));
+					pen.Color = Color.White;
+					pen.Width = 10;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl5[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl5[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl5[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl5[i].Angle) + 4.29)));
+					pen.Width = 2;
+					pen.Color = Color.YellowGreen;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl5[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl5[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl5[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl5[i].Angle))));
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl5[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl5[i].Angle))), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl5[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl5[i].Angle) + 4.29)));
+					pen.Width = 1;
+				}
+			}
+			if (numOfLayer == 6)
+			{
+				for (int i = 0; i < lvl6.Length; i++)
+				{
+					int tempSide = (int)Math.Round(side / Math.Pow(3, 6));
+					int tempX = (int)Math.Round(lvl6[i].coordF.X + tempSide * Math.Sqrt(3) / 6 * Math.Cos((lvl6[i].Angle)));
+					int tempY = (int)Math.Round(lvl6[i].coordF.Y - tempSide * Math.Sqrt(3) / 6 * Math.Sin((lvl6[i].Angle)));
+					pen.Color = Color.White;
+					pen.Width = 10;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl6[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl6[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl6[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl6[i].Angle) + 4.29)));
+					pen.Width = 2;
+					pen.Color = Color.Yellow;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl6[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl6[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl6[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl6[i].Angle))));
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl6[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl6[i].Angle))), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl6[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl6[i].Angle) + 4.29)));
+					pen.Width = 1;
+				}
+			}
+
+			if (numOfLayer == 7)
+			{
+				for (int i = 0; i < lvl7.Length; i++)
+				{
+					int tempSide = (int)Math.Round(side / Math.Pow(3, 7));
+					int tempX = (int)Math.Round(lvl7[i].coordF.X + tempSide * Math.Sqrt(3) / 6 * Math.Cos((lvl7[i].Angle)));
+					int tempY = (int)Math.Round(lvl7[i].coordF.Y - tempSide * Math.Sqrt(3) / 6 * Math.Sin((lvl7[i].Angle)));
+					pen.Color = Color.White;
+					pen.Width = 10;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl7[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl7[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl7[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl7[i].Angle) + 4.29)));
+					pen.Width = 2;
+					pen.Color = Color.Orange;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl7[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl7[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl7[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl7[i].Angle))));
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl7[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl7[i].Angle))), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl7[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl7[i].Angle) + 4.29)));
+					pen.Width = 1;
+				}
+			}
+
+			if (numOfLayer == 8)
+			{
+				for (int i = 0; i < lvl8.Length; i++)
+				{
+					int tempSide = (int)Math.Round(side / Math.Pow(3, 8));
+					int tempX = (int)Math.Round(lvl8[i].coordF.X + tempSide * Math.Sqrt(3) / 6 * Math.Cos((lvl8[i].Angle)));
+					int tempY = (int)Math.Round(lvl8[i].coordF.Y - tempSide * Math.Sqrt(3) / 6 * Math.Sin((lvl8[i].Angle)));
+					pen.Color = Color.White;
+					pen.Width = 10;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl8[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl8[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl8[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl8[i].Angle) + 4.29)));
+					pen.Width = 2;
+					pen.Color = Color.Coral;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl8[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl8[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl8[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl8[i].Angle))));
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl8[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl8[i].Angle))), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl8[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl8[i].Angle) + 4.29)));
+					pen.Width = 1;
+				}
+			}
+			if (numOfLayer == 9)
+			{
+				for (int i = 0; i < lvl9.Length; i++)
+				{
+					int tempSide = (int)Math.Round(side / Math.Pow(3, 9));
+					int tempX = (int)Math.Round(lvl9[i].coordF.X + tempSide * Math.Sqrt(3) / 6 * Math.Cos((lvl9[i].Angle)));
+					int tempY = (int)Math.Round(lvl9[i].coordF.Y - tempSide * Math.Sqrt(3) / 6 * Math.Sin((lvl9[i].Angle)));
+					pen.Color = Color.White;
+					pen.Width = 10;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl9[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl9[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl9[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl9[i].Angle) + 4.29)));
+					pen.Width = 2;
+					pen.Color = Color.DarkRed;
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl9[i].Angle + 2.09)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl9[i].Angle) + 2.09)), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl9[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl9[i].Angle))));
+					e.Graphics.DrawLine(pen, (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl9[i].Angle)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl9[i].Angle))), (int)Math.Round(tempX + tempSide * Math.Sqrt(3) / 3 * Math.Cos(-lvl9[i].Angle + 4.29)), (int)Math.Round(tempY + tempSide * Math.Sqrt(3) / 3 * Math.Sin((-lvl9[i].Angle) + 4.29)));
+					pen.Width = 1;
+				}
+			}
+
+
+
+		}
 
 	}
 
