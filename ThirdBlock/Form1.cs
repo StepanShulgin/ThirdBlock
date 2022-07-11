@@ -29,7 +29,7 @@ namespace ThirdBlock
             
             if (index == 1)
             {
-                DataBank.newTree.PaintTree(e);
+                DataBank.newTree.PaintTree(e);                
             }
         }
 

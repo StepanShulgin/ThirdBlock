@@ -433,9 +433,9 @@ namespace ThirdBlock
 				
 				switch (_parent.Level + 1) {
                     case 2:
-						lvl2[numElOfLvl[_parent.Level+1]-3]= _parent.First;
+						lvl2[numElOfLvl[_parent.Level+1]- 3] = _parent.First;
 						lvl2[numElOfLvl[_parent.Level+1] -2] = _parent.Second;
-						lvl2[numElOfLvl[_parent.Level+1] -1] = newThirdNode;
+						lvl2[numElOfLvl[_parent.Level+1] -1] = _parent.Third;
 						break;
 					case 3:
 						lvl3[numElOfLvl[_parent.Level + 1] - 3] = _parent.First;
@@ -680,12 +680,7 @@ namespace ThirdBlock
 		{
 			if (numOfLayer == 0) 
 			{
-				/*
-				e.Graphics.DrawLine(Pens.Red, root.Second.coordF.X,(int)Math.Round(root.Second.coordF.Y -Math.Sqrt(3)*(side / 6)), (int)Math.Round(root.Fourth.coordF.X + Math.Sqrt(3)*(side / 6) * Math.Cos(root.Fourth.Angle)), (int)Math.Round(root.Fourth.coordF.Y + Math.Sqrt(3)*(side / 6) * Math.Sin(root.Fourth.Angle)));
-				e.Graphics.DrawLine(Pens.Red, root.Second.coordF.X, (int)Math.Round(root.Second.coordF.Y - Math.Sqrt(3) * (side / 6)), (int)Math.Round(root.Sixth.coordF.X + Math.Sqrt(3)*(side / 6) * Math.Cos(root.Sixth.Angle)), (int)Math.Round(root.Sixth.coordF.Y + Math.Sqrt(3)*(side / 6) * Math.Sin(root.Sixth.Angle)));
-				e.Graphics.DrawLine(Pens.Red, (int)Math.Round(root.Fourth.coordF.X + Math.Sqrt(3)*(side / 6) * Math.Cos(root.Fourth.Angle)), (int)Math.Round(root.Fourth.coordF.Y + Math.Sqrt(3)*(side / 6) * Math.Sin(root.Fourth.Angle)), (int)Math.Round(root.Sixth.coordF.X + Math.Sqrt(3)*(side / 6) * Math.Cos(root.Sixth.Angle)), (int)Math.Round(root.Sixth.coordF.Y + Math.Sqrt(3)*(side / 6) * Math.Sin(root.Sixth.Angle)));
-				e.Graphics.DrawLine(Pens.Red, 0, 0, 0, 250);
-				*/
+				
 				pen.Width = 2;
 				pen.Color = Color.Red;
 				e.Graphics.DrawLine(pen,(int)Math.Round(root.Second.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(root.Second.Angle)), (int)Math.Round(root.Second.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(root.Second.Angle)), (int)Math.Round(root.Fourth.coordF.X + Math.Sqrt(3) * side / 6 * Math.Cos(root.Fourth.Angle)),(int)Math.Round(root.Fourth.coordF.Y - Math.Sqrt(3) * side / 6 * Math.Sin(root.Fourth.Angle)));
