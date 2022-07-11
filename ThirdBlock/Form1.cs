@@ -13,7 +13,7 @@ namespace ThirdBlock
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataBank.newTree = new Tree(700);
+            DataBank.newTree = new Tree(500);
             int w = pictureBox1.ClientSize.Width;
             int h = pictureBox1.ClientSize.Height;
             DataBank.newTree.AddNumLevel(9, w, h);
